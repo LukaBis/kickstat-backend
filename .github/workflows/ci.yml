@@ -42,4 +42,4 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: ":memory:"
-      run: php artisan test --no-interaction --stop-on-failure
+      run: php artisan test --stop-on-failure
