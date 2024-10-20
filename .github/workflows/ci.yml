@@ -42,7 +42,7 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: ":memory:"
-      run: php artisan test --stop-on-failure
+      run: php artisan test --coverage --stop-on-failure
     
     - name: Run PHPStan
       run: ./vendor/bin/phpstan
