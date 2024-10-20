@@ -1,0 +1,45 @@
+name: Laravel CI
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  laravel-ci:
+    name: Laravel CI Pipeline
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+        extensions: pdo_sqlite
+
+    - name: Install Composer dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Run Pint
+      run: ./vendor/bin/pint
+
+    - name: Copy .env
+      run: cp .env.example .env
+
+    - name: Generate key
+      run: php artisan key:generate
+
+    - name: Configure SQLite In-Memory Database
+      run: |
+        echo "DB_CONNECTION=sqlite" >> .env
+        echo "DB_DATABASE=:memory:" >> .env
+
+    - name: Run Tests
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: ":memory:"
+      run: php artisan test --no-interaction --stop-on-failure
