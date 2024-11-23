@@ -10,9 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class CountriesImportService
 {
-    public function __construct(private CountryClientInterface $client)
-    {
-    }
+    public function __construct(private CountryClientInterface $client) {}
 
     /**
      * @return array{updated: int, created: int}
