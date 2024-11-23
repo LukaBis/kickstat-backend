@@ -22,8 +22,6 @@ class CountriesImportService
         try {
             DB::beginTransaction();
 
-            info('Saving countries...');
-
             $updatedCount = 0;
             $createdCount = 0;
 
