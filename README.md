@@ -4,7 +4,6 @@ This is a backend for the football app that will show data like games, teams, st
 
 ## Console Commands
 
-**COMMAND FOR FETCHING COUNTRIES**
 ```
 php artisan app:import-countries
 ```
